@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.channel.dao.channelMapper">
+  <resultMap id="BaseResultMap" type="com.channel.pojo.channel">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sort" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="thumb" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="thumb_ott" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="category" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="blocked" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="share" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, description, sort, icon, cp, thumb, thumb_ott, category, blocked, share
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from channel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.channel.pojo.channel">
+    insert into channel (id, title, description, 
+      sort, icon, cp, thumb, 
+      thumb_ott, category, blocked, 
+      share)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{cp,jdbcType=VARCHAR}, #{thumb,jdbcType=VARCHAR}, 
+      #{thumbOtt,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{blocked,jdbcType=TINYINT}, 
+      #{share,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.channel.pojo.channel">
+    insert into channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="cp != null">
+        cp,
+      </if>
+      <if test="thumb != null">
+        thumb,
+      </if>
+      <if test="thumbOtt != null">
+        thumb_ott,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="blocked != null">
+        blocked,
+      </if>
+      <if test="share != null">
+        share,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null">
+        #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null">
+        #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbOtt != null">
+        #{thumbOtt,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="blocked != null">
+        #{blocked,jdbcType=TINYINT},
+      </if>
+      <if test="share != null">
+        #{share,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.channel.pojo.channel">
+    update channel
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null">
+        cp = #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null">
+        thumb = #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbOtt != null">
+        thumb_ott = #{thumbOtt,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="blocked != null">
+        blocked = #{blocked,jdbcType=TINYINT},
+      </if>
+      <if test="share != null">
+        share = #{share,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.channel.pojo.channel">
+    update channel
+    set title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      cp = #{cp,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      thumb_ott = #{thumbOtt,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      blocked = #{blocked,jdbcType=TINYINT},
+      share = #{share,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.channel.pojo.channel">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sort" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="thumb" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="thumb_ott" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="category" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="blocked" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="share" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, description, sort, icon, cp, thumb, thumb_ott, category, blocked, share
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from channel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.channel.pojo.channel">
+    insert into channel (id, title, description, 
+      sort, icon, cp, thumb, 
+      thumb_ott, category, blocked, 
+      share)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{cp,jdbcType=VARCHAR}, #{thumb,jdbcType=VARCHAR}, 
+      #{thumbOtt,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{blocked,jdbcType=TINYINT}, 
+      #{share,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.channel.pojo.channel">
+    insert into channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="cp != null">
+        cp,
+      </if>
+      <if test="thumb != null">
+        thumb,
+      </if>
+      <if test="thumbOtt != null">
+        thumb_ott,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="blocked != null">
+        blocked,
+      </if>
+      <if test="share != null">
+        share,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null">
+        #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null">
+        #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbOtt != null">
+        #{thumbOtt,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="blocked != null">
+        #{blocked,jdbcType=TINYINT},
+      </if>
+      <if test="share != null">
+        #{share,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.channel.pojo.channel">
+    update channel
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null">
+        cp = #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null">
+        thumb = #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbOtt != null">
+        thumb_ott = #{thumbOtt,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="blocked != null">
+        blocked = #{blocked,jdbcType=TINYINT},
+      </if>
+      <if test="share != null">
+        share = #{share,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.channel.pojo.channel">
+    update channel
+    set title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      cp = #{cp,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      thumb_ott = #{thumbOtt,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      blocked = #{blocked,jdbcType=TINYINT},
+      share = #{share,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

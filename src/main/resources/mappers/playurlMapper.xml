@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.channel.dao.playurlMapper" >
+  <resultMap id="BaseResultMap" type="com.channel.pojo.playurl" >
+    <constructor >
+      <arg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="quality" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vip_only" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="sharable" jdbcType="TINYINT" javaType="java.lang.Byte" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.channel.pojo.playurl" >
+    insert into play_url (id, title, quality, 
+      vip_only, sharable)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{quality,jdbcType=INTEGER}, 
+      #{vipOnly,jdbcType=TINYINT}, #{sharable,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.channel.pojo.playurl" >
+    insert into play_url
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+      <if test="vipOnly != null" >
+        vip_only,
+      </if>
+      <if test="sharable != null" >
+        sharable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=INTEGER},
+      </if>
+      <if test="vipOnly != null" >
+        #{vipOnly,jdbcType=TINYINT},
+      </if>
+      <if test="sharable != null" >
+        #{sharable,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>
